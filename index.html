@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div id="loginScreen" class="screen">
+    <div class="login-box">
+      <h1>₹ Tracker</h1>
+      <p class="subtitle">Sign in or create your account</p>
+      <input type="text" id="loginUser" placeholder="Username" />
+      <input type="password" id="loginPass" placeholder="Password" />
+      <div class="login-btns">
+        <button onclick="login()">Login</button>
+        <button class="sec" onclick="register()">Register</button>
+      </div>
+      <p id="loginMsg" class="login-msg"></p>
+    </div>
+  </div>
+
+  <!-- APP SCREEN -->
+  <div id="appScreen" class="screen hidden">
+    <div class="container">
+      <header>
+        <div>
+          <h1>₹ Tracker</h1>
+          <p class="subtitle" id="welcomeMsg"></p>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" onclick="exportCSV()" title="Export CSV">⬇ CSV</button>
+          <button class="icon-btn logout" onclick="logout()" title="Logout">↩ Logout</button>
+        </div>
+      </header>
+
+      <div class="balance-card">
+        <span class="label">Net Balance</span>
+        <span id="balance" class="balance-amount">₹0.00</span>
+        <div class="stats">
+          <div class="stat income"><span class="stat-label">↑ Income</span><span id="income">₹0.00</span></div>
+          <div class="divider"></div>
+          <div class="stat expense"><span class="stat-label">↓ Expense</span><span id="expense">₹0.00</span></div>
+        </div>
+      </div>
+
+      <form id="form">
+        <input type="text" id="text" placeholder="Description (e.g. Salary, Rent)" required />
+        <input type="number" id="amount" placeholder="Amount (+ income / − expense)" required />
+        <select id="category">
+          <option value="">Choose Category</option>
+          <option>Food</option>
+          <option>Transport</option>
+          <option>Housing</option>
+          <option>Health</option>
+          <option>Entertainment</option>
+          <option>Salary</option>
+          <option>Shopping</option>
+          <option>Education</option>
+          <option>Utilities</option>
+          <option>Investment</option>
+          <option>Gift</option>
+          <option>Other</option>
+        </select>
+        <input type="text" id="tags" placeholder="Tags (comma-separated, e.g. urgent, monthly)" />
+        <button type="submit">Add Transaction</button>
+      </form>
+
+      <div class="history-header">
+        <h2>History</h2>
+        <div style="display:flex;gap:0.5rem;align-items:center">
+          <select id="filterCat" onchange="render()" class="filter-select">
+            <option value="">All Categories</option>
+            <option>Food</option><option>Transport</option><option>Housing</option>
+            <option>Health</option><option>Entertainment</option><option>Salary</option>
+            <option>Shopping</option><option>Education</option><option>Utilities</option>
+            <option>Investment</option><option>Gift</option><option>Other</option>
+          </select>
+          <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+      </div>
+      <ul id="transactions"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
